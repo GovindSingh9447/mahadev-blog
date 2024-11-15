@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mahadev Blog</title>
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <header>
-    <h1>Mahadev Blog</h1>
-  </header>
-  <main>
-    <%= body %>
-  </main>
-  <footer>
-    <p>© 2024 Mahadev Blog</p>
-  </footer>
-</body>
-</html>
+<%- include('layout', { body: `
+<section class="hero">
+  <img src="/images/Shiva.jpeg" alt="Mahadev">
+  <p>Explore the divine journey of Mahadev.</p>
+</section>
+
+<section class="quotes">
+  <h2>Quotes</h2>
+  <ul>
+    <% quotes.forEach(quote => { %>
+      <li>"<%= quote %>"</li>
+    <% }) %>
+  </ul>
+</section>
+` }) %>
