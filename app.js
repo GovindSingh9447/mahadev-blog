@@ -1,30 +1,30 @@
-const express = require("express");
-const path = require("path");
-
+const express = require('express');
 const app = express();
-const PORT = 3000;
+const path = require('path');
 
-// Set EJS as the templating engine
-app.set("view engine", "ejs");
+// Serve static files (CSS and images) from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve static files (CSS and images)
-app.use(express.static(path.join(__dirname, "public")));
-
-// Mahadev Quotes
+// Sample quotes data
 const quotes = [
-  "Om Namah Shivaya!",
-  "Har Har Mahadev!",
-  "Shiva is the soul of everything.",
-  "In Shiva lies the essence of life.",
-  "Mahadev: The ultimate source of power and wisdom."
+  "Om Namah Shivaya",
+  "Har Har Mahadev",
+  "Shiva is the only truth.",
+  "The one who meditates on Shiva is blessed with peace."
 ];
 
-// Routes
-app.get("/", (req, res) => {
-  res.render("index", { quotes });
+// Define the home route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+// Define the route to fetch quotes as JSON
+app.get('/quotes', (req, res) => {
+  res.json(quotes);
 });
 
 // Start the server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
